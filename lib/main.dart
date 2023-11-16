@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:psm_1/home.dart';
 import 'package:psm_1/login.dart';
+import 'package:psm_1/password.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true),
       home: const LoginPage(),
+      initialRoute: '/',
       routes: {
+        '/reset': (context) => const ResetPage(),
         '/login': (context) => LoginPage(),
         '/home': (context) => Home(),
       },

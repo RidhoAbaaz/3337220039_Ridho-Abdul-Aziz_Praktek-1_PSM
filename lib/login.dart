@@ -13,9 +13,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
-  final _FormState = GlobalKey<FormState>();
-  final textControler = TextEditingController();
-  final _adreesState = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
             height: 500,
             width: 350,
             child: Form(
-              key: _FormState,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -52,12 +48,6 @@ class _LoginPageState extends State<LoginPage> {
                     child: SizedBox(
                       width: 300,
                       child: TextFormField(
-                        controller: textControler,
-                        validator: (value) {
-                          if (value == '') {
-                            return "nama tidak boleh kosong";
-                          }
-                        },
                         showCursor: true,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
@@ -74,7 +64,8 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(25)),
                             errorBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
-                                borderSide: BorderSide(color: Colors.red))),
+                                borderSide:
+                                    const BorderSide(color: Colors.red))),
                       ),
                     ),
                   ),
@@ -85,12 +76,6 @@ class _LoginPageState extends State<LoginPage> {
                     child: SizedBox(
                       width: 300,
                       child: TextFormField(
-                        key: _adreesState,
-                        validator: (value) {
-                          if (value == '') {
-                            return "addrees tidak boleh kosong";
-                          }
-                        },
                         showCursor: true,
                         obscureText: _obscureText,
                         decoration: InputDecoration(
@@ -104,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                               },
                               child: Icon(_obscureText
                                   ? Icons.visibility
-                                  : Icons.visibility),
+                                  : Icons.visibility_off),
                             ),
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
@@ -114,7 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(25)),
                             errorBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
-                                borderSide: BorderSide(color: Colors.red)),
+                                borderSide:
+                                    const BorderSide(color: Colors.red)),
                             labelText: "Password",
                             labelStyle: const TextStyle(color: Colors.black),
                             border: const OutlineInputBorder()),
@@ -124,18 +110,23 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(17, 5, 0, 10),
                     child: TextButton(
-                        onPressed: () {}, child: const Text('forgot password')),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/reset');
+                        },
+                        child: const Text('Forgot password')),
                   ),
                   Center(
                       child: ElevatedButton(
+                          style: const ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(
+                                  Color.fromARGB(255, 220, 191, 255))),
                           onPressed: () {
-                            if (_FormState.currentState!.validate()) {
-                              Navigator.pushNamed(context, '/login');
-                            } else {
-                              print("validation failed");
-                            }
+                            Navigator.pushNamed(context, '/home');
                           },
-                          child: const Text('sign in')))
+                          child: const Text(
+                            'Sign in',
+                            style: TextStyle(color: Colors.white),
+                          )))
                 ],
               ),
             ),

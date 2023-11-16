@@ -38,18 +38,36 @@ class Home extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
-            title: Text('hallo'),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.keyboard_arrow_left,
+                color: Colors.white,
+              ),
+            ),
+            title: const Text(
+              'List Item',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: const Color.fromRGBO(134, 167, 137, 1.0),
           ),
           body: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
+                  tileColor: const Color.fromARGB(255, 210, 227, 200),
                   leading: CircleAvatar(
-                    child: Text(count[index].toString()),
+                    backgroundColor: const Color.fromARGB(255, 235, 243, 232),
+                    child: Text(
+                      count[index].toString(),
+                      style: const TextStyle(color: Colors.black),
+                    ),
                   ),
                   title: Text(product[index]),
                   subtitle: Text(price[index]),
-                  trailing: Icon(Icons.delete),
+                  trailing: const Icon(Icons.delete),
                 );
               })),
     );
